@@ -1,484 +1,393 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aurora Client</title>
-    <meta name="description" content="Aurora Client - Modern Minecraft 1.8.9 PvP client with unique features and enhanced design.">
-    <meta name="author" content="AuroraMCD">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
-    <link rel="manifest" href="assets/site.webmanifest">
+<title>Aurora Client</title>
+<meta name="description" content="Aurora Client — a modern, powerful Minecraft 1.8.9 PvP client.">
+<meta name="theme-color" content="#7c6cff">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- Discord / Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Aurora Client">
+<meta property="og:description" content="Modern Minecraft PvP. Clean. Fast. Universal.">
+<meta property="og:image" content="assets/screenshot1.png">
+<meta property="og:url" content="https://auroramcd.github.io/aurora/">
 
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Favicons -->
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="manifest" href="assets/site.webmanifest">
 
-    <style>
-        /* Basic Reset & Font */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: #0f0f0f;
-            color: #fff;
-            overflow-x: hidden;
-        }
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        /* Loader */
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0f0f0f;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        .loader-wrapper.fade-out {
-            opacity: 0;
-            visibility: hidden;
-        }
-        .loader img {
-            width: 80px;
-            animation: spin 2s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg);}
-            100% { transform: rotate(360deg);}
-        }
+<!-- Inter Tight -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-        /* Header */
-        .header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: #121212;
-            z-index: 100;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-        }
-        .navbar .logo img {
-            width: 50px;
-            cursor: pointer;
-        }
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        .nav-links li {
-            margin-left: 30px;
-        }
-        .nav-links a {
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-        .nav-links a:hover {
-            color: #6603fc;
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin-bottom: 4px;
-            transition: all 0.3s ease;
-        }
+<style>
+:root {
+  --bg: #0a0a10;
+  --bg-soft: #121220;
+  --accent: #7c6cff;
+  --accent-glow: rgba(124,108,255,.45);
+  --text: #eaeaf0;
+  --muted: #a5a5c0;
+  --radius: 18px;
+}
 
-        /* Hero */
-        .hero {
-            text-align: center;
-            padding: 120px 20px 80px 20px;
-            background: linear-gradient(180deg, #1b1b1b 0%, #121212 100%);
-        }
-        .hero h1 {
-            font-size: 3rem;
-            color: #fff;
-        }
-        .hero p {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-        .button-group .cta-button {
-            padding: 12px 25px;
-            margin: 10px;
-            border-radius: 5px;
-            font-weight: 600;
-            background: #6603fc;
-            color: #fff;
-            transition: background 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .button-group .cta-button:hover {
-            background: #4b02b8;
-        }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, sans-serif;
+}
 
-        /* Features */
-        .features {
-            padding: 100px 50px;
-            text-align: center;
-        }
-        .features h2 {
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-        }
-        .feature-cards {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .card {
-            background: #1b1b1b;
-            padding: 30px;
-            border-radius: 10px;
-            width: 300px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-        }
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(102,3,252,0.5);
-        }
-        .card img {
-            width: 50px;
-            margin-bottom: 15px;
-        }
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        .card p {
-            color: #ccc;
-        }
+html {
+  scroll-behavior: smooth;
+}
 
-        /* Gallery */
-        .gallery {
-            padding: 100px 50px;
-            text-align: center;
-        }
-        .gallery h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-            gap: 20px;
-        }
-        .grid-item {
-            position: relative;
-            overflow: hidden;
-        }
-        .grid-item img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            transition: transform 0.3s ease;
-        }
-        .grid-item:hover img {
-            transform: scale(1.05);
-        }
+body {
+  background: radial-gradient(circle at top, #1a1a35, var(--bg));
+  color: var(--text);
+  overflow-x: hidden;
+}
 
-        /* FAQ */
-        .faq {
-            padding: 100px 50px;
-            text-align: center;
-        }
-        .faq h2 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-        }
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        .faq-item {
-            margin-bottom: 20px;
-        }
-        .faq-question {
-            width: 100%;
-            background: #1b1b1b;
-            padding: 15px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-        .faq-question:hover {
-            background: #6603fc;
-        }
-        .faq-answer {
-            background: #121212;
-            padding: 15px 20px;
-            margin-top: 5px;
-            border-radius: 8px;
-            display: none;
-        }
-        .faq-answer.active {
-            display: block;
-        }
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 18px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+  background: rgba(10,10,20,.7);
+  z-index: 1000;
+}
 
-        /* CTA */
-        .join-us {
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .join-us h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .join-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .join-button {
-            padding: 15px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: #6603fc;
-            color: #fff;
-            transition: background 0.3s ease;
-        }
-        .join-button:hover {
-            background: #4b02b8;
-        }
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
 
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 50px 20px;
-            background: #121212;
-            color: #ccc;
-        }
+header img {
+  width: 36px;
+  height: 36px;
+}
 
-        @media(max-width:768px){
-            .hamburger{display:flex;}
-            .nav-links{
-                position: fixed;
-                top:0;
-                right:-100%;
-                height:100vh;
-                width:70%;
-                background:#121212;
-                flex-direction:column;
-                justify-content:center;
-                align-items:center;
-                transition:right 0.3s ease;
-            }
-            .nav-links.active{
-                right:0;
-            }
-            .nav-links li{
-                margin: 20px 0;
-            }
-        }
-    </style>
+nav a {
+  margin-left: 28px;
+  color: var(--muted);
+  font-weight: 500;
+  transition: .25s;
+}
+
+nav a:hover {
+  color: var(--accent);
+}
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  animation: heroIn 1.2s ease forwards;
+  opacity: 0;
+}
+
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  background: linear-gradient(90deg, #fff, var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  max-width: 640px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.hero .buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 34px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--accent);
+  color: #000;
+  box-shadow: 0 0 35px var(--accent-glow);
+  transition: .25s;
+}
+
+.btn.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 55px var(--accent);
+}
+
+/* SCROLL ARROW */
+.scroll-indicator {
+  margin-top: 60px;
+  font-size: 22px;
+  color: var(--muted);
+  animation: bounce 2s infinite;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
+
+/* SECTIONS */
+section {
+  padding: 120px 8%;
+}
+
+section h2 {
+  font-size: 2.4rem;
+  color: var(--accent);
+  margin-bottom: 40px;
+}
+
+/* REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all .9s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* FEATURES */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 30px;
+}
+
+.card {
+  background: linear-gradient(145deg, #15152b, #0b0b16);
+  padding: 34px;
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top, var(--accent-glow), transparent 60%);
+  opacity: 0;
+  transition: .3s;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0,0,0,.6);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.card p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* GALLERY */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 26px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: var(--radius);
+  transition: .35s;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.06);
+}
+
+/* FAQ */
+.faq-item {
+  background: #101020;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.faq-item button {
+  width: 100%;
+  padding: 22px;
+  background: none;
+  border: none;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.faq-item div {
+  padding: 0 22px 22px;
+  color: var(--muted);
+  display: none;
+}
+
+.faq-item.active div {
+  display: block;
+}
+
+/* CTA */
+.cta {
+  text-align: center;
+  background: radial-gradient(circle at center, #1b1b3a, #090912);
+  border-radius: var(--radius);
+}
+
+/* FOOTER */
+footer {
+  padding: 40px;
+  text-align: center;
+  color: #777;
+}
+</style>
 </head>
 
 <body>
-    <!-- Loader -->
-    <div class="loader-wrapper">
-        <div class="loader">
-            <img src="assets/apple-touch-icon.png" alt="Aurora Client Logo">
-        </div>
+
+<header>
+  <div class="logo">
+    <img src="assets/apple-touch-icon.png" alt="Aurora Logo">
+    Aurora
+  </div>
+  <nav>
+    <a href="#features" target="_blank">Features</a>
+    <a href="#gallery" target="_blank">Gallery</a>
+    <a href="#faq" target="_blank">FAQ</a>
+    <a href="https://discord.gg/YOURINVITE" target="_blank">Discord</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Aurora Client</h1>
+  <p>Modern Minecraft 1.8.9 PvP — fast, clean, universal.</p>
+  <div class="buttons">
+    <a class="btn" href="#" target="_blank">Download</a>
+    <a class="btn secondary" href="https://github.com/AuroraMCD" target="_blank">GitHub</a>
+  </div>
+  <div class="scroll-indicator" onclick="document.querySelector('#features').scrollIntoView({behavior:'smooth'})">
+    <i class="fa-solid fa-chevron-down"></i>
+  </div>
+</section>
+
+<section id="features" class="reveal">
+  <h2>Why Aurora?</h2>
+  <div class="features-grid">
+    <div class="card">
+      <h3>Performance</h3>
+      <p>Optimized rendering, stable FPS, low latency.</p>
     </div>
+    <div class="card">
+      <h3>Modern UI</h3>
+      <p>Clean interfaces inspired by next-gen clients.</p>
+    </div>
+    <div class="card">
+      <h3>Universal</h3>
+      <p>Works across systems with consistent behavior.</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar">
-            <div class="logo">
-                <img src="assets/apple-touch-icon.png" alt="Aurora Client Logo">
-            </div>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#faq">FAQ</a></li>
-                <li><a href="/download">Download</a></li>
-                <li><a href="/discord">Discord</a></li>
-            </ul>
-        </nav>
-    </header>
+<section id="gallery" class="reveal">
+  <h2>In-Game Preview</h2>
+  <div class="gallery-grid">
+    <img src="assets/screenshot1.png">
+    <img src="assets/screenshot2.png">
+    <img src="assets/screenshot3.png">
+  </div>
+</section>
 
-    <!-- Hero -->
-    <main class="main">
-        <section class="hero">
-            <h1>Aurora Client</h1>
-            <p>Modern Minecraft 1.8.9 PvP Client</p>
-            <div class="button-group">
-                <a href="#features" class="cta-button">Learn More</a>
-                <a href="/download" class="cta-button download-button">
-                    <i class="fa-solid fa-download"></i> Download Now
-                </a>
-            </div>
-        </section>
+<section id="faq" class="reveal">
+  <h2>FAQ</h2>
+  <div class="faq-item">
+    <button>Is Aurora safe?</button>
+    <div>Yes. Designed for stability and transparency.</div>
+  </div>
+  <div class="faq-item">
+    <button>What version?</button>
+    <div>Minecraft 1.8.9.</div>
+  </div>
+</section>
 
-        <!-- Features -->
-        <section id="features" class="features">
-            <h2>Why Choose Aurora?</h2>
-            <div class="feature-cards">
-                <div class="card">
-                    <img src="assets/desktop.svg" alt="Cross platform">
-                    <h3>Cross Platform</h3>
-                    <p>Supports Windows, macOS, and Linux with seamless performance.</p>
-                </div>
-                <div class="card">
-                    <img src="assets/increase.svg" alt="Quality of Life">
-                    <h3>Quality of Life</h3>
-                    <p>Advanced HUDs, smooth interfaces, and user-friendly design.</p>
-                </div>
-                <div class="card">
-                    <img src="assets/branch.svg" alt="Open Source">
-                    <h3>Open Source</h3>
-                    <p>Community-driven and fully open-source for transparency and collaboration.</p>
-                </div>
-            </div>
-        </section>
+<section class="cta">
+  <h2>Join Aurora</h2>
+  <a class="btn" href="https://discord.gg/YOURINVITE" target="_blank">Join Discord</a>
+</section>
 
-        <!-- About -->
-        <section id="about" class="about">
-            <h2>About Aurora Client</h2>
-            <p>Aurora is an advanced rebrand of GlideClient, designed with modern aesthetics, new features, and universal support.</p>
-            <p>Enhanced HUDs, improved performance, and customization options make Aurora the next-level Minecraft client.</p>
-        </section>
+<footer>
+  © 2025 AuroraMCD
+</footer>
 
-        <!-- Gallery -->
-        <section id="gallery" class="gallery">
-            <h2>Gallery</h2>
-            <div class="image-grid">
-                <div class="grid-item"><img src="assets/screenshot1.png" alt="Screenshot 1"></div>
-                <div class="grid-item"><img src="assets/screenshot2.png" alt="Screenshot 2"></div>
-                <div class="grid-item"><img src="assets/screenshot3.png" alt="Screenshot 3"></div>
-                <div class="grid-item"><img src="assets/screenshot4.png" alt="Screenshot 4"></div>
-            </div>
-        </section>
+<script>
+/* FAQ */
+document.querySelectorAll('.faq-item button').forEach(b=>{
+  b.onclick=()=>b.parentElement.classList.toggle('active')
+});
 
-        <!-- FAQ -->
-        <section id="faq" class="faq">
-            <h2>Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Is Aurora safe?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes, Aurora is fully open-source and safe for use.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        <span>Is Aurora free?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Aurora is completely free for everyone.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+/* Reveal */
+const obs=new IntersectionObserver(e=>{
+  e.forEach(x=>x.isIntersecting&&x.target.classList.add('visible'))
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
 
-        <!-- CTA -->
-        <section class="join-us">
-            <h2>Join the Aurora Community</h2>
-            <div class="join-buttons">
-                <a href="/download" class="join-button download-btn">
-                    <i class="fa-solid fa-download"></i> Download
-                </a>
-                <a href="/discord" class="join-button discord-btn">
-                    <i class="fa-brands fa-discord"></i> Join Discord
-                </a>
-            </div>
-        </section>
-    </main>
+/* Easter egg */
+let c=0;
+document.querySelector('.logo').onclick=()=>{
+  if(++c===7){alert('Aurora unlocked ✨');c=0;}
+};
+</script>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2025 AuroraMCD. Follow us: 
-            <a href="https://github.com/GlideClient" target="_blank">GitHub</a> | 
-            <a href="https://www.youtube.com/@GlideClient" target="_blank">YouTube</a> | 
-            <a href="/discord" target="_blank">Discord</a>
-        </p>
-    </footer>
-
-    <!-- Scripts -->
-    <script>
-        // Loader
-        window.addEventListener('load', () => {
-            document.querySelector('.loader-wrapper').classList.add('fade-out');
-        });
-
-        // Hamburger
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const answer = q.nextElementSibling;
-                const expanded = q.getAttribute('aria-expanded') === 'true';
-                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
-                document.querySelectorAll('.faq-question').forEach(button => button.setAttribute('aria-expanded', 'false'));
-                if (!expanded) {
-                    answer.classList.add('active');
-                    q.setAttribute('aria-expanded', 'true');
-                }
-            });
-        });
-    </script>
 </body>
-
 </html>
