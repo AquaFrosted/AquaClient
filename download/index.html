@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Discord / Social Meta -->
+    <meta property="og:title" content="GlideClient">
+    <meta property="og:description" content="Official GlideClient website">
+    <meta property="og:image" content="https://glideclient.github.io/Branding/banner.png">
+    <meta property="og:url" content="https://glideclient.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <title>GlideClient - Downloads</title>
+    <link rel="icon" type="image/svg+xml" href="https://glideclient.github.io/Branding/glideicon.svg">
+
+    <style>
+        /* Basic GUI Styling */
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: #1a1a1a; color: #fff; }
+        a { color: #fff; text-decoration: none; }
+        .loader-wrapper { position: fixed; top:0; left:0; width:100%; height:100%; display:flex; justify-content:center; align-items:center; background:#1a1a1a; transition: opacity 0.5s ease; z-index:9999; }
+        .loader-wrapper.fade-out { opacity:0; visibility:hidden; }
+        .loader img { width: 80px; }
+        .header { background:#111; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; }
+        .nav-links { list-style:none; display:flex; gap:20px; }
+        .nav-links li { display:inline; }
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+        .hamburger span { width:25px; height:3px; background:#fff; display:block; }
+        @media (max-width:768px){ .nav-links { display:none; flex-direction:column; background:#111; position:absolute; top:60px; right:20px; padding:10px; border-radius:8px; } .nav-links.active { display:flex; } .hamburger { display:flex; } }
+        .hero { text-align:center; padding:80px 20px; }
+        .hero h1 { font-size:48px; margin-bottom:20px; color:#6603fc; }
+        .hero p { font-size:18px; margin-bottom:30px; }
+        .cta-button { background:#6603fc; color:#fff; padding:15px 30px; border-radius:8px; display:inline-block; font-weight:bold; transition:0.3s; }
+        .cta-button:hover { background:#4a02a8; }
+        .minimal-link { display:block; margin-top:15px; color:#aaa; font-size:14px; }
+        iframe { margin-top:30px; width:100%; max-width:560px; height:315px; border:none; border-radius:8px; }
+        .footer { background:#111; padding:20px; text-align:center; font-size:14px; color:#aaa; }
+    </style>
+</head>
+<body>
+    <div class="loader-wrapper">
+        <div class="loader">
+            <img src="https://glideclient.github.io/Branding/glideicon.svg" alt="GlideClient Logo">
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="logo">
+            <a href="/">
+                <img src="https://glideclient.github.io/Branding/glideicon.svg" alt="GlideClient Logo" width="40">
+            </a>
+        </div>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="/#features">Features</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/discord">Discord</a></li>
+        </ul>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <h1>Downloads</h1>
+            <p>GlideClient is closed-source. Use the official download link below.</p>
+            <div class="button-group">
+                <a href="https://example.com" class="cta-button">Go to Download</a>
+            </div>
+            <a href="/multimc" class="minimal-link">Need the MultiMC instance instead?</a>
+            <iframe src="https://www.youtube.com/embed/UCjslvak8DBaVpFPGCNynnXg" frameborder="0" allowfullscreen></iframe>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Website by GlideClient Team</p>
+        <p>Follow us: <a href="https://www.youtube.com/@glideclient" target="_blank">YouTube</a></p>
+    </footer>
+
+    <script>
+        // Loader fade out
+        window.addEventListener('load', () => {
+            document.querySelector('.loader-wrapper').classList.add('fade-out');
+        });
+
+        // Hamburger menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
