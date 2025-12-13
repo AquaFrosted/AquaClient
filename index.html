@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aurora Client</title>
+    <meta name="description" content="Aurora Client - Modern Minecraft 1.8.9 PvP client with unique features and enhanced design.">
+    <meta name="keywords" content="minecraft client, aurora client, 1.8.9 pvp, minecraft mods, auroramcd">
+    <meta name="author" content="AuroraMCD">
+    <meta name="robots" content="index, follow">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"> 
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png"> 
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- Inter Tight Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <meta name="theme-color" content="#6603fc">
+
+    <style>
+        body, h1, h2, h3, h4, h5, h6, p, a, button, input, textarea {
+            font-family: 'Inter Tight', sans-serif;
+        }
+
+        body { margin:0; background:#0f0f15; color:#fff; }
+        a { color: #fff; text-decoration: none; }
+        .header { display:flex; justify-content: space-between; align-items:center; padding:1rem 2rem; background:#1b1b28; position:fixed; width:100%; top:0; z-index:100; }
+        .logo img { height:40px; }
+        .nav-links { display:flex; list-style:none; gap:1rem; }
+        .nav-links li a:hover { color:#6603fc; }
+        .hamburger { display:none; cursor:pointer; flex-direction:column; gap:5px; }
+        .hamburger span { width:25px; height:3px; background:#fff; }
+        @media(max-width:768px){.nav-links{display:none; flex-direction:column; background:#1b1b28; position:absolute; top:60px; right:2rem; padding:1rem; border-radius:8px;}.nav-links.active{display:flex;}.hamburger{display:flex;}}
+
+        main{padding-top:80px;}
+        .hero{text-align:center;padding:6rem 2rem;background:#12121b;}
+        .cta-button{background:#6603fc;color:#fff;padding:.8rem 1.5rem;border-radius:6px;margin:0 .5rem;display:inline-flex;align-items:center;gap:.5rem;}
+        .features{padding:4rem 2rem;text-align:center;}
+        .feature-cards{display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;margin-top:2rem;}
+        .card{background:#1b1b28;padding:2rem;border-radius:12px;flex:1 1 250px;transition:transform .2s ease;}
+        .card:hover{transform:translateY(-10px);}
+        .gallery{padding:4rem 2rem;text-align:center;}
+        .image-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem;}
+        .grid-item{position:relative;overflow:hidden;border-radius:12px;}
+        .grid-item img{width:100%;display:block;}
+        .grid-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(102,3,252,0.7);opacity:0;display:flex;flex-direction:column;justify-content:center;align-items:center;color:#fff;font-weight:600;transition:opacity .3s;}
+        .grid-item:hover .grid-overlay{opacity:1;}
+        .faq{padding:4rem 2rem;text-align:center;}
+        .faq-container{max-width:800px;margin:2rem auto;}
+        .faq-item{margin-bottom:1rem;background:#1b1b28;border-radius:8px;overflow:hidden;}
+        .faq-question{width:100%;padding:1rem;cursor:pointer;background:#2a2a3c;border:none;color:#fff;text-align:left;display:flex;justify-content:space-between;align-items:center;font-weight:500;}
+        .faq-answer{display:none;padding:1rem;background:#12121b;}
+        .faq-answer.active{display:block;}
+        .join-us{text-align:center;padding:4rem 2rem;background:#12121b;}
+        .join-buttons{display:flex;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap;}
+        .join-button{padding:.8rem 1.5rem;border-radius:6px;font-weight:600;display:inline-flex;align-items:center;gap:.5rem;}
+        .download-btn{background:#6603fc;color:#fff;}
+        .discord-btn{background:#7289da;color:#fff;}
+        footer{padding:2rem;text-align:center;background:#1b1b28;}
+        footer a{color:#fff;}
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo"><img src="assets/favicon-32x32.png" alt="Aurora Logo"></div>
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/discord">Discord</a></li>
+        </ul>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Aurora Client</h1>
+            <p>Modern Minecraft 1.8.9 PvP client with unique design</p>
+            <div>
+                <a href="#features" class="cta-button">Learn More</a>
+                <a href="/download" class="cta-button download-button"><i class="fa-solid fa-download"></i> Download</a>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Why choose Aurora?</h2>
+            <div class="feature-cards">
+                <div class="card"><h3>Cross-Platform</h3><p>Supports Windows, macOS, and Linux seamlessly.</p></div>
+                <div class="card"><h3>Quality of Life</h3><p>Enhanced features and fixes over standard clients.</p></div>
+                <div class="card"><h3>Open-Source</h3><p>Fully open and community-driven development.</p></div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <h2>About Aurora</h2>
+            <p>Aurora Client is a modern fork of SoarClient for Minecraft 1.8.9 PVP with enhanced design, new mods, and improved performance.</p>
+        </section>
+
+        <section id="gallery" class="gallery">
+            <h2>Gallery</h2>
+            <div class="image-grid">
+                <div class="grid-item"><img src="assets/screenshot1.png" alt="Screenshot 1"><div class="grid-overlay">Screenshot 1</div></div>
+                <div class="grid-item"><img src="assets/screenshot2.png" alt="Screenshot 2"><div class="grid-overlay">Screenshot 2</div></div>
+                <div class="grid-item"><img src="assets/screenshot3.png" alt="Screenshot 3"><div class="grid-overlay">Screenshot 3</div></div>
+                <div class="grid-item"><img src="assets/screenshot4.png" alt="Screenshot 4"><div class="grid-overlay">Screenshot 4</div></div>
+                <div class="grid-item"><img src="assets/screenshot5.png" alt="Screenshot 5"><div class="grid-overlay">Screenshot 5</div></div>
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <h2>FAQ</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>Is Aurora safe to use?</span><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Yes, fully safe and open-source.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>Will I get banned?</span><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>No unfair advantages included. Check server rules.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false"><span>Is it free?</span><i class="fa-solid fa-chevron-down"></i></button>
+                    <div class="faq-answer"><p>Yes, completely free and open-source.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="join-us">
+            <h2>Join the Aurora Community</h2>
+            <div class="join-buttons">
+                <a href="/download" class="join-button download-btn"><i class="fa-solid fa-download"></i> Download</a>
+                <a href="/discord" class="join-button discord-btn"><i class="fa-brands fa-discord"></i> Discord</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Aurora Client | Made by AuroraMCD</p>
+        <p><a href="/discord">Discord</a> | <a href="https://github.com/AuroraMCD">GitHub</a></p>
+    </footer>
+
+    <script>
+        // Hamburger
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', ()=>{hamburger.classList.toggle('active');navLinks.classList.toggle('active');});
+        document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click', ()=>{hamburger.classList.remove('active');navLinks.classList.remove('active');});});
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(q=>{
+            q.addEventListener('click', ()=>{
+                const answer = q.nextElementSibling;
+                const expanded = q.getAttribute('aria-expanded') === 'true';
+                q.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                answer.classList.toggle('active', !expanded);
+            });
+        });
+    </script>
+</body>
+</html>
