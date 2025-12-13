@@ -145,6 +145,57 @@ padding:2rem;text-align:center
 @media(max-width:800px){
 .hero h1{font-size:2rem}
 }
+
+  .download-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: rgba(133, 57, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 15px rgba(133, 57, 255, 0.2);
+    animation: pulsate 2s ease-in-out infinite;
+}
+
+@keyframes pulsate {
+    0% {
+        box-shadow: 0 4px 15px rgba(133, 57, 255, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(133, 57, 255, 0.4);
+        transform: scale(1.02);
+    }
+    100% {
+        box-shadow: 0 4px 15px rgba(133, 57, 255, 0.2);
+        transform: scale(1);
+    }
+}
+
+.download-button:hover {
+    background-color: var(--primary-color);
+    box-shadow: 0 4px 20px rgba(133, 57, 255, 0.4);
+    animation: none; /* Pause pulsing on hover */
+}
+
+.download-button img {
+    width: 20px;
+    height: 20px;
+    /* Remove the filter causing the SVG to appear white */
+    /* filter: brightness(0) invert(1); */
+}
+
+.download-button svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--secondary-color); /* Set the icon color */
+}
+
+.download-button:hover svg {
+    stroke: var(--secondary-color);
+}
+
 </style>
 </head>
 
@@ -168,7 +219,7 @@ padding:2rem;text-align:center
 <p>Modern Minecraft 1.8.9 PvP client — fast, clean, and built for performance.</p>
 <div class="button-group">
 <a class="btn btn-primary" href="#features">Learn More</a>
-                  <a href="/download" class="btn btn-primary">
+                  <a href="/download" class="cta-button download-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
