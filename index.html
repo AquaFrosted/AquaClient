@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <title>Aqua Client</title>
@@ -8,38 +7,22 @@
 
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-<!-- Open Graph / Discord -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Aqua Client">
-  <meta property="og:description" content="A fast, modern Minecraft client by AquaFrost.">
-  <meta property="og:url" content="https://net.aquafrost.ct.ws/">
-  <meta property="og:image" content="https://net.aquafrost.ct.ws/assets/aquabanner.png">
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="512">
-  <meta property="og:image:height" content="512">
 
-  <!-- Twitter (Discord also reads this sometimes) -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Aqua Client">
-  <meta name="twitter:description" content="A fast, modern Minecraft client by AquaFrost.">
-  <meta name="twitter:image" content="https://net.aquafrost.ct.ws/assets/aquabanner.png">
-
-  <!--Font Awesome -->
-  <link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-  referrerpolicy="no-referrer"
-/>
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        referrerpolicy="no-referrer">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/assets/aqualogo.png">
-  <!-- Inline CSS with Animations -->
+  <link rel="icon" type="image/png" href="assets/aqualogo.png">
+
   <style>
     * {
-      font-family: Poppins, sans-serif;
-      text-shadow: 2px 2px 20px #000000;
-      color: #ffffff;
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
+      font-family: Poppins, sans-serif;
+      color: #fff;
     }
 
     html {
@@ -47,312 +30,146 @@
     }
 
     body {
-      margin: 0;
-      background: #000000;
-      overflow-x: hidden;
+      background: #000;
     }
 
-    a {
-      color: inherit;
+    /* ================= NAVBAR ================= */
+    header {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      background: #000;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.4em;
+      font-weight: 600;
+    }
+
+    .logo img {
+      width: 48px;
+    }
+
+    nav a {
+      position: relative;
+      margin-left: 28px;
+      font-weight: 500;
       text-decoration: none;
     }
 
-    /* Fade-in animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 1s ease-out;
+    nav a i {
+      margin-right: 6px;
+      color: #00d4ff;
     }
 
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Navbar */
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px 100px;
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-}
-
-.nav-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-/* Logo */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo img {
-  width: 45px;
-}
-
-.logo span {
-  font-size: 1.6em;
-  font-weight: 600;
-  color: #fff;
-}
-
-/* Navigation links */
-.navigation a {
-  position: relative;
-  font-size: 1.05em;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  margin-left: 40px;
-}
-
-/* Underline animation */
-.navigation a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(to right, #4b6eeb, #9176e3);
-  border-radius: 5px;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.4s ease;
-}
-
-.navigation a:hover::after {
-  transform-origin: left;
-  transform: scaleX(1);
-}
-
-/* Responsive */
-@media (max-width: 900px) {
-  .navbar {
-    padding: 20px 40px;
-  }
-
-  .navigation a {
-    margin-left: 20px;
-    font-size: 0.95em;
-  }
-}
-
-    /* Hero */
-    .main-center {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .top {
-      text-align: center;
-      padding: 40px 10px;
-    }
-
-    .top p {
-      margin-top: -10px;
-    }
-    .middle {
-      margin: auto;
-      border-radius: 50px;
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 3px;
       background: linear-gradient(to right, #4b6eeb, #9176e3);
-      padding: 40px;
+      border-radius: 5px;
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.4s ease;
     }
 
-    .middle img {
-      display: block;
-      margin: auto;
-      max-width: 100%;
-      filter: drop-shadow(0px 0px 50px #000000);
+    nav a:hover::after {
+      transform-origin: left;
+      transform: scaleX(1);
     }
 
-    /* Info */
-    .info-center {
+    /* ================= CONTENT ================= */
+    .hero {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+    }
+
+    .hero p {
+      opacity: 0.8;
+    }
+
+    section {
       max-width: 1200px;
       margin: auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 40px 20px;
-    }
-
-    /* Panels */
-    .panel {
-      background: linear-gradient(to right, #4b6eeb, #9176e3);
-      border-radius: 50px;
-      padding: 30px;
-      text-align: center;
-    }
-
-    .panel img {
-      max-width: 100%;
-      margin-top: 20px;
-      filter: drop-shadow(0px 0px 50px #000000);
-    }
-
-    /* Download */
-    .download-center {
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
       padding: 60px 20px;
     }
 
-    .download-btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 12px 30px;
-      border-radius: 12px;
-      background: linear-gradient(to right, #4b6eeb, #9176e3);
-    }
-
-    /* Footer */
-    .end {
+    /* ================= FOOTER ================= */
+    footer {
       border-top: 1px solid #222;
-      padding: 20px;
       text-align: center;
+      padding: 20px;
       font-size: 14px;
-      color: #505050;
+      opacity: 0.6;
     }
 
     @media (max-width: 800px) {
-      .header-center ul {
+      nav {
         display: none;
       }
-
-      .middle {
-        border-radius: 25px;
-      }
     }
-
-    .header ul li a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.header ul li a i {
-  font-size: 16px;
-  color: #00d4ff; /* Aqua-style color */
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.header ul li a:hover i {
-  transform: scale(1.2);
-  color: #ffffff;
-}
   </style>
 </head>
 
 <body>
 
-<!-- Header -->
-  <header class="navbar">
+<!-- NAVBAR -->
+<header>
   <div class="nav-container">
     <div class="logo">
-      <img src="assets/aqualogo.png" alt="Aqua Client Logo">
-      <span>Aqua Client</span>
+      <img src="assets/aqualogo.png" alt="Aqua Client">
+      Aqua Client
     </div>
 
-    <nav class="navigation">
-      <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
-      <a href="#features"><i class="fa-solid fa-star"></i> Features</a>
-      <a href="#download"><i class="fa-solid fa-download"></i> Download</a>
-      <a href="https://discord.gg/pXqqVkVzcd"><i class="fa-brands fa-discord"></i> Discord</a>
-      <a href="https://youtube.com/@aquafrosted"><i class="fa-brands fa-youtube"></i> Youtube</a>
+    <nav>
+      <a href="#home"><i class="fa-solid fa-house"></i>Home</a>
+      <a href="#features"><i class="fa-solid fa-star"></i>Features</a>
+      <a href="#download"><i class="fa-solid fa-download"></i>Download</a>
+      <a href="#"><i class="fa-brands fa-discord"></i>Discord</a>
+      <a href="#"><i class="fa-brands fa-youtube"></i>YouTube</a>
     </nav>
   </div>
 </header>
 
+<!-- CONTENT -->
+<div id="home" class="hero">
+  <h1>Aqua Client</h1>
+  <p>The most advanced Minecraft PvP client, ever.</p>
+</div>
 
+<section id="features">
+  <h2>Features</h2>
+  <p>Forge based, customizable, modern UI.</p>
+</section>
 
-  <!-- Hero -->
-  <div class="main">
-    <div class="main-center">
-      <div class="top fade-in">
-        <h1>Aqua Client</h1>
-        <p>The most advanced minecraft PVP client, ever.</p>
-      </div>
-    </div>
-  </div>
+<section id="download">
+  <h2>Download</h2>
+  <p>Get started with Aqua Client today.</p>
+</section>
 
-  <!-- Features -->
-  <div id="features" class="info-center">
-    <div class="fade-in">
-      <h2>Forge Based</h2>
-      <p>Use Aqua Client alongside countless other Forge mods.</p>
-    </div>
-    <div class="fade-in">
-      <h2>Closed Source</h2>
-      <p>Our Client is Closed Source. Making it impossible for people to import viruses into our client.</p>
-    </div>
-    <div class="fade-in">
-      <h2>Many Mods</h2>
-      <p>Constant updates with powerful and customizable mods.</p>
-    </div>
-  </div>
-
-  <!-- Editor -->
-  <div class="info-center">
-    <div class="panel fade-in">
-      <h2>Advanced Mod Menu</h2>
-      <img src="assets/mod.png" />
-    </div>
-  </div>
-
-  <!-- Visuals -->
-  <div class="info-center">
-    <div class="fade-in">
-      <h2>Exceptional Visuals</h2>
-      <p>Smooth animations, blur effects and modern UI never seen before in PvP clients.</p>
-    </div>
-    <div class="fade-in">
-      <img src="assets/mod.png" />
-    </div>
-  </div>
-
-  <!-- Customization -->
-  <div class="info-center">
-    <div class="panel fade-in">
-      <h2>Infinite Customization</h2>
-      <p>All of our Mods are super customizable Making your Ui look like how you dreamed.</p>
-    </div>
-  </div>
-
-  <!-- Download -->
-  <div id="download" class="download-center fade-in">
-    <h1>Are you ready for the adventure?</h1>
-    <a class="download-btn" href="https://github.com/AquaFrosted/AquaClient/releases/download/installer/AquaClientInstaller-1.0.jar">Download Installer</a>
-  </div>
-
-  <!-- Footer -->
-  <div class="end fade-in">
-    <p>AquaFrost © 2025</p>
-    <p>Not affiliated with Mojang Studios</p>
-  </div>
-
-  <!-- Scroll Animation Script -->
-  <script>
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+<footer>
+  AquaFrost © 2025 · Not affiliated with Mojang Studios
+</footer>
 
 </body>
-
 </html>
