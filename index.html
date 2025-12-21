@@ -24,6 +24,15 @@
   <meta name="twitter:description" content="A fast, modern Minecraft client by AquaFrost.">
   <meta name="twitter:image" content="https://net.aquafrost.ct.ws/assets/aquabanner.png">
 
+  <!--Font Awesome -->
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4x1p5fK5jTq4vK7F7wK6K1Aw=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/assets/aqualogo.png">
   <!-- Inline CSS with Animations -->
@@ -177,23 +186,45 @@
         border-radius: 25px;
       }
     }
+
+    .header ul li a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header ul li a i {
+  font-size: 16px;
+  color: #00d4ff; /* Aqua-style color */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.header ul li a:hover i {
+  transform: scale(1.2);
+  color: #ffffff;
+}
   </style>
 </head>
 
 <body>
 
-  <!-- Header -->
-  <div class="header" id="home">
-    <div class="header-center fade-in">
-      <img src="assets/aqualogo.png" alt="AquaClient Logo" />
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#download">Download</a></li>
-        <li><a href="https://discord.gg/pXqqVkVzcd">Discord</a></li>
-      </ul>
-    </div>
+<!-- Header -->
+<div class="header" id="home">
+  <div class="header-center fade-in">
+    <img src="assets/aqualogo.png" alt="AquaClient Logo" />
+    <ul>
+      <li><a href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+      <li><a href="#features"><i class="fa-solid fa-star"></i> Features</a></li>
+      <li><a href="#download"><i class="fa-solid fa-download"></i> Download</a></li>
+      <li><a href="https://discord.gg/pXqqVkVzcd"><i class="fa-brands fa-discord"></i> Discord</a></li>
+      <li><a href="https://youtube.com/@aquafrosted"><i class="fa-brands fa-youtube"></i> Youtube</a></li>
+    </ul>
   </div>
+</div>
+
 
   <!-- Hero -->
   <div class="main">
